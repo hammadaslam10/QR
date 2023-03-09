@@ -16,8 +16,7 @@ app.get("/api/v1/Verify/:qrcode", async (req, res) => {
     if (data.Used == false) {
       res.status(200).json({
         success: true,
-        message: "welcome",
-        data,
+        message: "verification successfull",
       });
       await QrSchema.findOneAndUpdate(
         { QrCode: req.params.qrcode },
