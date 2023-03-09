@@ -31,14 +31,14 @@ app.get("/api/v1/Verify/:qrcode", async (req, res) => {
     } else {
       res.status(200).json({
         success: false,
-        message: "you already used that ",
+        message: "you already used that",
         data
       });
     }
   } else {
     res.status(200).json({
       success: false,
-      message: "invalid qr code ",
+      message: "invalid qr code",
       data
     });
   }
