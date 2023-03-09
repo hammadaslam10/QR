@@ -17,6 +17,7 @@ app.get("/api/v1/Verify/:qrcode", async (req, res) => {
       res.status(200).json({
         success: true,
         message: "verification successfull",
+        data,
       });
       await QrSchema.findOneAndUpdate(
         { QrCode: req.params.qrcode },
@@ -31,12 +32,14 @@ app.get("/api/v1/Verify/:qrcode", async (req, res) => {
       res.status(200).json({
         success: false,
         message: "you already used that ",
+        data
       });
     }
   } else {
     res.status(200).json({
       success: false,
       message: "invalid qr code ",
+      data
     });
   }
 });
