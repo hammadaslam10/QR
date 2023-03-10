@@ -31,7 +31,7 @@ app.get("/api/v1/Verify/:qrcode", async (req, res) => {
     } else {
       res.status(200).json({
         success: false,
-        message: "you already used that",
+        message: "This QR code is already scanned!",
         data,
       });
     }
