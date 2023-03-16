@@ -43,7 +43,7 @@ app.get("/api/v1/Verify/:qrcode", async (req, res) => {
     });
   }
 });
-app.get("/lahooti:qrcode", async (req, res) => {
+app.get("/lahooti/:qrcode", async (req, res) => {
   let data = await QrSchema.findOne({ QrCode: req.params.qrcode });
   if (data) {
     if (data.Used == false) {
