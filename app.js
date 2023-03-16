@@ -76,6 +76,15 @@ app.get("/lahooti:qrcode", async (req, res) => {
     });
   }
 });
+app.get("/", async (req, res) => {
+ 
+    res.status(200).json({
+      success: false,
+      message: "invalid qr code",
+     
+    });
+  
+});
 //Route Imports:
 // const QrSchemaRoute = require("./routes/QrSchemaRoute");
 // app.use("/api/v1", QrSchemaRoute);
