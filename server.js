@@ -29,7 +29,7 @@ const connectDataBase = () => {
     });
 };
 connectDataBase();
-const server = app.listen(5000, () => {
+const server = app.listen(4000, () => {
   console.log(`Server is working on port http:localhost:${5000}`);
 });
 
