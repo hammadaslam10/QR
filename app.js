@@ -43,6 +43,39 @@ app.get("/api/v1/Verify/:qrcode", async (req, res) => {
     });
   }
 });
+app.get("/lahooti:qrcode", async (req, res) => {
+  let data = await QrSchema.findOne({ QrCode: req.params.qrcode });
+  if (data) {
+    if (data.Used == false) {
+      res.status(200).json({
+        success: true,
+        message: "verification successfull",
+        data,
+      });
+      await QrSchema.findOneAndUpdate(
+        { QrCode: req.params.qrcode },
+        { Used: true },
+        {
+          new: true,
+          runValidators: true,
+          useFindAndModify: false,
+        }
+      );
+    } else {
+      res.status(200).json({
+        success: false,
+        message: "This QR code is already scanned!",
+        data,
+      });
+    }
+  } else {
+    res.status(200).json({
+      success: false,
+      message: "invalid qr code",
+      data,
+    });
+  }
+});
 //Route Imports:
 // const QrSchemaRoute = require("./routes/QrSchemaRoute");
 // app.use("/api/v1", QrSchemaRoute);
