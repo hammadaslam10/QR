@@ -29,8 +29,8 @@ const connectDataBase = () => {
     });
 };
 connectDataBase();
-const server = app.listen(4000, () => {
-  console.log(`Server is working on port http:localhost:${5000}`);
+const server = app.listen(7000, () => {
+  console.log(`Server is working on port http:localhost:${7000}`);
 });
 
 // Unhandled Promise Rejection:
