@@ -49,7 +49,7 @@ app.get("/lahooti/:qrcode", async (req, res) => {
     if (data.Used == false) {
       res.status(200).json({
         success: true,
-        message: "verification successfull",
+        message: "Verification Successful",
         data,
       });
       await QrSchema.findOneAndUpdate(
@@ -64,14 +64,14 @@ app.get("/lahooti/:qrcode", async (req, res) => {
     } else {
       res.status(200).json({
         success: false,
-        message: "This QR code is already scanned!",
+        message: "This QR Code Is Already Scanned!",
         data,
       });
     }
   } else {
     res.status(200).json({
       success: false,
-      message: "invalid qr code",
+      message: "Invalid QR Code",
       data,
     });
   }
