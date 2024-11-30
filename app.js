@@ -80,7 +80,7 @@ app.get("/", async (req, res) => {
  
     res.status(200).json({
       success: false,
-      message: "invalid qr code",
+      message: "Invalid QR Code",
      
     });
   
