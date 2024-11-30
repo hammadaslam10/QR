@@ -10,6 +10,39 @@ app.use(express.json());
 // app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(fileUpload());
+app.get("/api/v1/verify/:qrcode", async (req, res) => {
+  let data = await QrSchema.findOne({ QrCode: req.params.qrcode });
+  if (data) {
+    if (data.Used == false) {
+      res.status(200).json({
+        success: true,
+        message: "Verification Successful",
+        data,
+      });
+      await QrSchema.findOneAndUpdate(
+        { QrCode: req.params.qrcode },
+        { Used: true },
+        {
+          new: true,
+          runValidators: true,
+          useFindAndModify: false,
+        }
+      );
+    } else {
+      res.status(200).json({
+        success: false,
+        message: "This QR Code Is Already Scanned!",
+        data,
+      });
+    }
+  } else {
+    res.status(200).json({
+      success: false,
+      message: "Invalid QR Code",
+      data,
+    });
+  }
+});
 app.get("/api/v1/Verify/:qrcode", async (req, res) => {
   let data = await QrSchema.findOne({ QrCode: req.params.qrcode });
   if (data) {
